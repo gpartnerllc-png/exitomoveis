@@ -1,2 +1,0 @@
-# eixtomoveis
-Exito Moveis Planejados.

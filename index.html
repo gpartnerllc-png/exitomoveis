@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Êxito | Móveis</title>
+    <link rel="icon" type="image/png" href="https://images.yampi.me/assets/stores/droppfy/uploads/icon/65f3d8c635540.png">
+    
+    <style>
+        :root {
+            --apple-bg: #f5f5f7;
+            --apple-text: #1d1d1f;
+            --apple-blue: #0066cc;
+            --glass-white: rgba(255, 255, 255, 0.8);
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--apple-bg);
+            color: var(--apple-text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header Estilo Apple */
+        header {
+            padding: 60px 20px 20px;
+            text-align: center;
+        }
+
+        header h5 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #86868b;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-size: 48px;
+            font-weight: 600;
+            letter-spacing: -0.003em;
+            margin: 0;
+        }
+
+        /* Container do Carrossel 360º */
+        .carousel-viewport {
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1200px; /* Profundidade do 3D */
+            overflow: hidden;
+        }
+
+        .carousel-3d {
+            width: 220px;
+            height: 280px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .carousel-item {
+            position: absolute;
+            width: 220px;
+            height: 280px;
+            left: 0; top: 0;
+            background: white;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            box-sizing: border-box;
+            box-shadow: var(--shadow);
+            backface-visibility: hidden; /* Melhora performance */
+            cursor: pointer;
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: 0.4s;
+        }
+
+        .carousel-item:hover {
+            border-color: var(--apple-blue);
+        }
+
+        /* Círculos das Fotos */
+        .img-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            background: #eee;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .carousel-item h3 {
+            font-size: 17px;
+            margin: 0;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .carousel-item p {
+            font-size: 12px;
+            color: #86868b;
+            text-align: center;
+            margin: 8px 0 0;
+        }
+
+        /* Controles */
+        .controls {
+            text-align: center;
+            margin-top: -50px;
+        }
+
+        .nav-btn {
+            background: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            margin: 0 10px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            font-size: 20px;
+            color: var(--apple-text);
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: var(--apple-blue);
+            color: white;
+        }
+
+        /* Modal Lead Estilo Apple (Glassmorphism) */
+        #leadModal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            justify-content: center; align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 28px;
+            width: 90%;
+            max-width: 380px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px;
+            margin: 12px 0;
+            background: #f5f5f7;
+            border: 1px solid #d2d2d7;
+            color: var(--apple-text);
+            border-radius: 12px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button.submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--apple-blue);
+            border: none;
+            color: white;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h5>Inovação em cada detalhe</h5>
+    <h1>Êxito | Móveis</h1>
+</header>
+
+<div class="carousel-viewport">
+    <div class="carousel-3d" id="carousel">
+        <div class="carousel-item" onclick="openLeadModal('https://idx.droppfy.com/', 'Cozinha Planejada')">
+            <img src="https://images.unsplash.com/photo-1556911220-e15224bbafb0?w=400" class="img-circle">
+            <h3>Cozinha Lux</h3>
+            <p>Conceito Aberto</p>
+        </div>
+        <div class="carousel-item" onclick="openLeadModal('https://idx.droppfy.com/', 'Quarto Casal')">
+            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?w=400" class="img-circle">
+            <h3>Quartos</h3>
+            <p>Conforto Master</p>
+        </div>
+        <div class="carousel-item" onclick="openLeadModal('https://idx.droppfy.com/', 'Salas')">
+            <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400" class="img-circle">
+            <h3>Salas de Estar</h3>
+            <p>Painéis em LED</p>
+        </div>
+        <div class="carousel-item" onclick="openLeadModal('https://idx.droppfy.com/', 'Escritório')">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400" class="img-circle">
+            <h3>Home Office</h3>
+            <p>Foco e Design</p>
+        </div>
+        <div class="carousel-item" onclick="openLeadModal('https://idx.droppfy.com/', 'Banheiros')">
+            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400" class="img-circle">
+            <h3>Banheiros</h3>
+            <p>Mármore e Madeira</p>
+        </div>
+        <div class="carousel-item" onclick="openLeadModal('https://idx.droppfy.com/', 'Área Gourmet')">
+            <img src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?w=400" class="img-circle">
+            <h3>Área Gourmet</h3>
+            <p>Lazer Completo</p>
+        </div>
+        <div class="carousel-item" onclick="openLeadModal('https://idx.droppfy.com/', 'Closets')">
+            <img src="https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=400" class="img-circle">
+            <h3>Closets</h3>
+            <p>Organização Inteligente</p>
+        </div>
+        <div class="carousel-item" onclick="openLeadModal('https://idx.droppfy.com/', 'Móveis Corporativos')">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400" class="img-circle">
+            <h3>Corporativo</h3>
+            <p>Soluções Business</p>
+        </div>
+    </div>
+</div>
+
+<div class="controls">
+    <button class="nav-btn" onclick="rotate(1)">←</button>
+    <button class="nav-btn" onclick="rotate(-1)">→</button>
+</div>
+
+<div id="leadModal">
+    <div class="modal-content">
+        <h2 style="font-weight: 600;">Solicitar Catálogo</h2>
+        <p style="color: #86868b; font-size: 14px;">Preencha para receber o orçamento do produto selecionado.</p>
+        <form id="leadForm">
+            <input type="text" id="name" placeholder="Nome Completo" required>
+            <input type="email" id="email" placeholder="E-mail" required>
+            <input type="tel" id="whatsapp" placeholder="WhatsApp (DDD)" required>
+            <button type="submit" class="submit-btn">RECEBER ACESSO</button>
+        </form>
+        <p id="statusMsg" style="font-size: 12px; margin-top: 15px;"></p>
+    </div>
+</div>
+
+<script>
+    const carousel = document.getElementById('carousel');
+    const items = document.querySelectorAll('.carousel-item');
+    const itemCount = items.length;
+    let currDegree = 0;
+
+    // Distribui os 8 itens em um círculo de 360 graus
+    function initCarousel() {
+        const radius = 400; // Raio do círculo
+        items.forEach((item, i) => {
+            const angle = i * (360 / itemCount);
+            item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+        });
+    }
+
+    function rotate(direction) {
+        currDegree += direction * (360 / itemCount);
+        carousel.style.transform = `rotateY(${currDegree}deg)`;
+    }
+
+    initCarousel();
+
+    // Lógica do Modal e Telegram (Sua lógica original preservada)
+    const TELEGRAM_TOKEN = '6714566885:AAG5wuBA_F9XUksSDtYKnzR4vk9w8m_d6Cc';
+    const CHAT_ID = '1703808186';
+    let currentLink = '';
+    let currentProduct = '';
+
+    function openLeadModal(link, product) {
+        currentLink = link;
+        currentProduct = product;
+        document.getElementById('leadModal').style.display = 'flex';
+    }
+
+    document.getElementById('leadForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const statusMsg = document.getElementById('statusMsg');
+        statusMsg.innerText = "Enviando solicitação...";
+
+        const message = `🏠 **Novo Lead Planejados**\n\n` +
+                        `👤 Nome: ${document.getElementById('name').value}\n` +
+                        `📧 E-mail: ${document.getElementById('email').value}\n` +
+                        `📱 Whats: ${document.getElementById('whatsapp').value}\n` +
+                        `🛋️ Interessado em: ${currentProduct}`;
+
+        try {
+            const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: CHAT_ID, text: message, parse_mode: 'Markdown' })
+            });
+
+            if (response.ok) {
+                statusMsg.style.color = "#0066cc";
+                statusMsg.innerText = "Sucesso! Abrindo catálogo...";
+                setTimeout(() => { window.location.href = currentLink; }, 1500);
+            }
+        } catch (error) {
+            statusMsg.style.color = "#ff5252";
+            statusMsg.innerText = "Erro ao conectar. Tente novamente.";
+        }
+    });
+
+    window.onclick = (e) => { 
+        if (e.target == document.getElementById('leadModal')) 
+        document.getElementById('leadModal').style.display = "none"; 
+    };
+</script>
+
+</body>
+</html>
