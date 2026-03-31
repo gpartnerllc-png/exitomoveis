@@ -369,9 +369,9 @@ Especialistas em Planejados!</h5>
         const msg = `🚀 **Novo Lead Êxito**\n👤: ${document.getElementById('name').value}\n📧: ${document.getElementById('email').value}\n📱: ${document.getElementById('whatsapp').value}\n🛋️: ${document.getElementById('productName').innerText}`;
         
         try {
-            await fetch('https://api.telegram.org/bot6714566885:AAG5wuBA_F9XUksSDtYKnzR4vk9w8m_d6Cc/sendMessage', {
+            await fetch('https://api.telegram.org/bot8767690602:AAGaQTOT0RAVzleaPMWgLFOrF928qeq7DZA/sendMessage', {
                 method: 'POST', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: '1703808186', text: msg, parse_mode: 'Markdown' })
+                body: JSON.stringify({ chat_id: '686449807', text: msg, parse_mode: 'Markdown' })
             });
             status.style.color = "green";
             status.innerText = "Sucesso! Redirecionando...";
